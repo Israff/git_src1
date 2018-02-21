@@ -1,0 +1,8 @@
+@font-face { 
+  font-family: 'RobotoRegular'; 
+  src: url('../fonts/RobotoRegular/robotoregular.woff2') format('woff2'), 
+/*       url('../fonts/RobotoRegular/robotoregular.ttf')  format('truetype'), */
+       url('../fonts/RobotoRegular/robotoregular.woff') format('woff'); 
+  font-weight: normal; 
+  font-style: normal; 
+}
