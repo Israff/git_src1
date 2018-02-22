@@ -1,0 +1,12 @@
+{% if categories %}
+                        <nav class="products_nav">
+                            <span class="products_nav_toggle">Выберите категорию</span>
+                            <ul>
+                              {% for category in categories %}
+                                <li>
+                                    <a href="#categoryID{{ category.category_id }}">{{ category.name }}</a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </nav>
+{% endif %} 
