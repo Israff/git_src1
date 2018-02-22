@@ -1,0 +1,12 @@
+              <div class="main_banner owl-carousel owl-theme">
+                {% for banner in banners %}
+                  <div class="main_banner_item_container">
+                    <a class="main_banner_item" href="{{ banner.link }}" style="background-image: url(/image/{{ banner.image_plain }})">
+                        <div class="container">
+                            <h2>{{ banner.title }}</h2>
+                            <p>Краткое описание пирога или его состав тут. Краткое описание пирога или его состав тут.</p>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+              </div>

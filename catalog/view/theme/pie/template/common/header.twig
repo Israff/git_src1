@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        {% if description %}
+        <meta name="description" content="{{ description }}" />
+        {% endif %}
+        {% if keywords %}
+        <meta name="keywords" content="{{ keywords }}" />
+        {% endif %}
+
+        <link rel="apple-touch-icon" sizes="180x180" href="catalog/view/theme/pie/image/favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="catalog/view/theme/pie/image/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="catalog/view/theme/pie/image/favicon/favicon-16x16.png">
+        <link rel="shortcut icon" href="catalog/view/theme/pie/image/favicon/favicon.ico">
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather:400,700|Montserrat:400,500,700|Roboto+Condensed:700&amp;subset=cyrillic">
+
+        <link rel="stylesheet" href="catalog/view/theme/pie/stylesheet/normalize.css">
+        <link rel="stylesheet" href="catalog/view/theme/pie/stylesheet/main.css">
+        <link rel="stylesheet" href="catalog/view/theme/pie/stylesheet/media.css">
+
+        {% for link in links %}
+        <link href="{{ link.href }}" rel="{{ link.rel }}" />
+        {% endfor %}
+        {% for analytic in analytics %}
+        {{ analytic }}
+        {% endfor %}
+
+        <link rel="stylesheet" href="catalog/view/libs/owl.carousel/owl.carousel.min.css">
+
+        <title>{{ title }}</title>
+        <base href="{{ base }}" />
+    </head>
+
+    <body>
+        <header>
+            <div class="header_top">
+                <div class="container">
+                    <div class="header_top_layout">
+                        <nav class="main_nav">
+                            <div class="main_nav_toggle">
+                                <span></span>
+                            </div>
+                            <ul>
+                                <li>
+                                    <a href="#">О пекарне</a>
+                                </li>
+                                <li>
+                                    <a href="#">Доставка и оплата</a>
+                                </li>
+                                <li>
+                                    <a href="#">Статьи</a>
+                                </li>
+                                <li>
+                                    <a href="#">Акции</a>
+                                </li>
+                                <li>
+                                    <a href="#">Отзывы</a>
+                                </li>
+                                <li>
+                                    <a href="#">Вакансии</a>
+                                </li>
+                                <li>
+                                    <a href="#">Контакты</a>
+                                </li>
+                            </ul>
+                        </nav>
+                        <div class="header_phone">
+                            <a class="phone" href="tel:8(800)5551450">8 (800) 555 14 50</a>
+                            <span>Звонок бесплатный</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="header_bottom">
+                <div class="container">
+                    <div class="header_bottom_layout">
+                        <div class="logo">
+                            <a href="index.html">
+                                <img src="catalog/view/theme/pie/image/logo.png" alt="{{ title }}">
+                            </a>
+                        </div>
+                        <div class="header_phone">
+                            <a class="phone" href="tel:8(800)5551450">8 (800) 555 14 50</a>
+                            <span>Звонок бесплатный</span>
+                        </div>
+                        <nav class="products_nav">
+                            <span class="products_nav_toggle">Выберите категорию</span>
+                            <ul>
+                                <li>
+                                    <a href="#catalogSection1">Сытные пироги</a>
+                                </li>
+                                <li>
+                                    <a href="#catalogSection2">Сладкие пироги</a>
+                                </li>
+                                <li>
+                                    <a href="#catalogSection3">Выпечка</a>
+                                </li>
+                                <li>
+                                    <a href="#catalogSection4">Десерты</a>
+                                </li>
+                                <li>
+                                    <a href="#catalogSection5">Наборы</a>
+                                </li>
+                            </ul>
+                        </nav>
+                        <a class="header_cart" href="basket.html">
+                            <p>0 товаров</p>
+                            <b>Корзина</b>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="header_overlay"></div>
+        </header>
