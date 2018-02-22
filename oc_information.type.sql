@@ -5,3 +5,5 @@ ALTER TABLE `oc_information` CHANGE COLUMN `type` `type` ENUM('I','A','V','S') D
 
 
 ALTER TABLE `oc_information` ADD COLUMN `date_added` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
+
+ALTER TABLE `oc_information` ADD COLUMN `image` VARCHAR(255) NOT NULL DEFAULT '' AFTER `type`;
