@@ -1,6 +1,6 @@
 <?php
 // Heading
-$_['heading_title']          = 'Страницы';
+$_['heading_title']          = 'Статьи';
 
 // Text
 $_['text_success']           = 'Настройки успешно изменены!';

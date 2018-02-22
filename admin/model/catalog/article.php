@@ -1,7 +1,7 @@
 <?php
-class ModelCatalogInformation extends Model {
+class ModelCatalogArticle extends Model {
 	public function addInformation($data) {
-		$this->db->query("INSERT INTO " . DB_PREFIX . "information SET `type` = 'I', sort_order = '" . (int)$data['sort_order'] . "', bottom = '" . (isset($data['bottom']) ? (int)$data['bottom'] : 0) . "', status = '" . (int)$data['status'] . "'");
+		$this->db->query("INSERT INTO " . DB_PREFIX . "information SET `type` = 'A', sort_order = '" . (int)$data['sort_order'] . "', bottom = '" . (isset($data['bottom']) ? (int)$data['bottom'] : 0) . "', status = '" . (int)$data['status'] . "'");
 
 		$information_id = $this->db->getLastId();
 
@@ -88,14 +88,14 @@ class ModelCatalogInformation extends Model {
 	}
 
 	public function getInformation($information_id) {
-		$query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "information WHERE `type` = 'I' AND information_id = '" . (int)$information_id . "'");
+		$query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "information WHERE `type` = 'A' AND information_id = '" . (int)$information_id . "'");
 
 		return $query->row;
 	}
 
 	public function getInformations($data = array()) {
 		if ($data) {
-			$sql = "SELECT * FROM " . DB_PREFIX . "information i LEFT JOIN " . DB_PREFIX . "information_description id ON (i.information_id = id.information_id) WHERE i.`type` = 'I' AND id.language_id = '" . (int)$this->config->get('config_language_id') . "'";
+			$sql = "SELECT * FROM " . DB_PREFIX . "information i LEFT JOIN " . DB_PREFIX . "information_description id ON (i.information_id = id.information_id) WHERE i.`type` = 'A' AND id.language_id = '" . (int)$this->config->get('config_language_id') . "'";
 
 			$sort_data = array(
 				'id.title',
@@ -133,7 +133,7 @@ class ModelCatalogInformation extends Model {
 			$information_data = $this->cache->get('information.' . (int)$this->config->get('config_language_id'));
 
 			if (!$information_data) {
-				$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "information i LEFT JOIN " . DB_PREFIX . "information_description id ON (i.information_id = id.information_id) WHERE i.`type` = 'I' AND id.language_id = '" . (int)$this->config->get('config_language_id') . "' ORDER BY id.title");
+				$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "information i LEFT JOIN " . DB_PREFIX . "information_description id ON (i.information_id = id.information_id) WHERE i.`type` = 'A' AND id.language_id = '" . (int)$this->config->get('config_language_id') . "' ORDER BY id.title");
 
 				$information_data = $query->rows;
 
@@ -199,7 +199,7 @@ class ModelCatalogInformation extends Model {
 	}
 
 	public function getTotalInformations() {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "information WHERE `type` = 'I' ");
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "information WHERE `type` = 'A' ");
 
 		return $query->row['total'];
 	}

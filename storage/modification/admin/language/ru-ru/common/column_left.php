@@ -28,7 +28,7 @@ $_['text_event']                = 'События';
 $_['text_extension']            = 'Модули / Расширения';
 $_['text_filter']               = 'Фильтры';
 $_['text_geo_zone']             = 'Географические зоны';
-$_['text_information']          = 'Статьи';
+$_['text_information']          = 'Страницы';
 $_['text_installer']            = 'Установка расширений';
 $_['text_language']             = 'Языки';
 $_['text_language_editor']      = 'Редактор языка';
@@ -94,4 +94,5 @@ $_['text_complete_status']      = 'Заказы завершенные';
 $_['text_processing_status']    = 'Заказы в процессе';
 $_['text_other_status']         = 'Остальные заказы';
 
-
+$_['text_article']         = 'Статьи';
+$_['text_vacancies']         = 'Вакансии';
