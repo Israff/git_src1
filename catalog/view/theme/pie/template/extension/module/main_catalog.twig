@@ -1,0 +1,62 @@
+{% if products %}
+            <section class="content_section catalog_section" id="categoryID{{ category_id }}">
+                <div class="container">
+                    <h2>{{ category_name }}</h2>
+                    <div class="product_list">
+                    	{% for product in products %}
+                        <div class="product">
+                            <div class="product_img">
+                                <img src="{{ product.thumb }}" alt="{{ product.name }}">
+                            </div>
+                            {% if product.sticker %}
+                            <div class="product_sticker">
+                                <img src="/image/{{ product.sticker }}" alt="">
+                            </div>
+                            {% endif %}
+                            <section class="product_info">
+                                <div class="product_info_top">
+                                    <h3>
+                                        {{ product.name }}
+                                    </h3>
+                                    {% if product.calorific %}
+                                    <span class="product_popup_icon"></span>
+                                    <div class="product_popup">
+                                        <div class="product_popup_content">{{ product.calorific }}</div>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                <div class="product_description">
+                                    {{ product.description }}
+                                </div>
+                            </section>
+                            <form class="product_form">
+                            	{% if product.options %}
+                                <fieldset>
+                                	{% for option in product.options %}
+                                    <input type="radio" data-option-id="{{ option.option_id }}" data-option-value-id="{{ option.product_option_value_id }}" {% if option.price %}
+                                    data-price="{{ option.price }}"
+                                    {% endif %} {% if option.special %}
+                                    data-special="{{ option.special }}"
+                                    {% endif %} name="weight" id="weight-{{ product.product_id }}-{{ option.product_option_value_id }}"{% if option.first %} checked{% endif%}>
+                                    <label for="weight-{{ product.product_id }}-{{ option.product_option_value_id }}">{{ option.name }}</label>
+                                    {% endfor %}
+                                </fieldset>
+                                {% endif %}
+                                <div class="product_form_bottom">
+                                    <div class="price_container">
+                                    	{% if product.special %}
+                                    	<span class="price">{{ product.special }}</span>
+                                    	<span class="price_discount">{{ product.price }}</span>
+                                    	{% else %}
+                                        <span class="price">{{ product.price }}</span>
+                                        {% endif %}
+                                    </div>
+                                    <button class="btn" type="submit">В корзину</button>
+                                </div>
+                            </form>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+{% endif %}

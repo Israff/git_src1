@@ -1988,3 +1988,13 @@ article.content_section h1 {
     text-align: center;
     margin-top: 51px;
 }
+
+div.price_container > span.price::after
+{
+    content: ' ₽';
+}
+
+div.price_container > span.price_discount::after
+{
+    content: ' ₽';
+}

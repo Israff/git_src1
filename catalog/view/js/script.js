@@ -156,4 +156,17 @@ $(function() {
     });
 
 
+    $("form.product_form > fieldset input[type='radio']").change( function()
+    {
+        var price = $(this).attr("data-price"), special = $(this).attr("data-special");
+
+        if( special !== undefined )
+        {
+            $(this).parent().next().find("span.price").html( special );
+            $(this).parent().next().find("span.price_discount").html( price );
+        }else{
+            $(this).parent().next().find("span.price").html( price );
+        }
+    });
+
 });
