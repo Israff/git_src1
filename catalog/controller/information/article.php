@@ -38,6 +38,11 @@ class ControllerInformationArticle extends Controller {
 
 			$data['date'] = sprintf("%02d.%02d.%04d", $date['day'], $date['month'], $date['year'] );
 
+			if( $article_info['image'] )
+			{
+				$data['image'] = $article_info['image'];
+			}
+
 			$data['continue'] = $this->url->link('common/home');
 
 			$data['column_left'] = $this->load->controller('common/column_left');

@@ -5,9 +5,11 @@
                 <h1>{{ heading_title }}</h1>
                 <p class="caption_date">Дата публикации: {{ date }}</p>
                 <div class="article_content">
+                	{% if image %}
                     <div class="img_container">
-                        <img src="img/pie_img_article.jpg" alt="Осетинский пирог">
+                        <img src="/image/{{ image }}" alt="{{ heading_title }}">
                     </div>
+                    {% endif %}
                     <div class="content_text">
                         <div class="content">
                             {{ description }}
