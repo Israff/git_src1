@@ -1,0 +1,24 @@
+{{ header }}
+
+        <main>
+            <section class="content_section vacancies_section">
+                <div class="container">
+                    <h1>{{ heading_title }}</h1>
+                    <div class="vacancies_in">
+                    	{% if image %}
+                        <div class="vacancies_img_container">
+                            <img src="/image/{{ image }}" alt="{{ heading_title }}">
+                        </div>
+                        {% endif %}
+                        <div class="content_text">
+                        	{{ description }}
+                        </div>
+                        <div class="vacancies_respond">
+                            <a href="#" class="vacancies_respond_btn btn">Откликнуться</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+{{ footer }}
