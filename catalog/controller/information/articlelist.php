@@ -62,7 +62,7 @@ class ControllerInformationArticleList extends Controller {
 		$pagination->total = $article_total;
 		$pagination->page = $page;
 		$pagination->limit = $limit;
-		$pagination->url = $this->url->link('product/category',  $url . '&page={page}');
+		$pagination->url = $this->url->link('information/articlelist',  $url . '&page={page}');
 
 		$data['pagination'] = $pagination->render(); 
 
