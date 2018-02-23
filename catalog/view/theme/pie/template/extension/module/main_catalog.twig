@@ -33,7 +33,7 @@
                             	{% if product.options %}
                                 <fieldset>
                                 	{% for option in product.options %}
-                                    <input type="radio" data-option-id="{{ option.option_id }}" data-option-value-id="{{ option.product_option_value_id }}" {% if option.price %}
+                                    <input type="radio" data-option-id="{{ option.product_option_id }}" data-option-value-id="{{ option.product_option_value_id }}" {% if option.price %}
                                     data-price="{{ option.price }}"
                                     {% endif %} {% if option.special %}
                                     data-special="{{ option.special }}"
@@ -51,7 +51,7 @@
                                         <span class="price">{{ product.price }}</span>
                                         {% endif %}
                                     </div>
-                                    <button class="btn" type="submit">В корзину</button>
+                                    <button class="btn" data-pid="{{ product.product_id }}"  type="submit">В корзину</button>
                                 </div>
                             </form>
                         </div>

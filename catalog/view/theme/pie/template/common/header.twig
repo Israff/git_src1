@@ -47,10 +47,10 @@
                             </div>
                             <ul>
                                 <li>
-                                    <a href="#">О пекарне</a>
+                                    <a href="/index.php?route=information/information_about&information_id=4">О пекарне</a>
                                 </li>
                                 <li>
-                                    <a href="#">Доставка и оплата</a>
+                                    <a href="/index.php?route=information/information_delivery&information_id=6">Доставка и оплата</a>
                                 </li>
                                 <li>
                                     <a href="/index.php?route=information/articlelist">Статьи</a>
@@ -89,10 +89,7 @@
                             <span>Звонок бесплатный</span>
                         </div>
                         {{ menu }}
-                        <a class="header_cart" href="basket.html">
-                            <p>0 товаров</p>
-                            <b>Корзина</b>
-                        </a>
+                        {{ cart }}
                     </div>
                 </div>
             </div>

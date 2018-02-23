@@ -169,4 +169,35 @@ $(function() {
         }
     });
 
+    $("form.product_form   button[type='submit']").click( function( evt )
+    {
+        var post = {};
+        var option;
+
+        evt.preventDefault();
+        evt.stopPropagation();
+
+        post['product_id'] = parseInt( $(this).attr("data-pid") );
+        post['quantity'] = 1;
+
+        option = $(this).parent().prev().find("input[type='radio']:checked");
+
+        if( option.length > 0 )
+        {
+            post['option'] = {};
+
+            post['option'][ option.attr("data-option-id") ] = parseInt( option.attr( "data-option-value-id" ) );
+        }
+
+        $.post( "/index.php?route=checkout/cart/add", post, function( obj )
+        {
+            if( obj.success !== undefined )
+            {
+                $("a.header_cart").parent().load("index.php?route=common/cart/info");
+            }
+        },'json');
+
+        return false;
+    });
+
 });

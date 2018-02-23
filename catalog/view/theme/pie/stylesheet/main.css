@@ -1998,3 +1998,8 @@ div.price_container > span.price_discount::after
 {
     content: ' ₽';
 }
+
+a.header_cart > b::after
+{
+    content: ' ₽';
+}

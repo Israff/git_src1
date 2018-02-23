@@ -6,6 +6,8 @@ class ControllerCommonCart extends Controller {
 		// Totals
 		$this->load->model('setting/extension');
 
+		$total_quantity = 0;
+
 		$totals = array();
 		$taxes = $this->cart->getTaxes();
 		$total = 0;
@@ -60,6 +62,8 @@ class ControllerCommonCart extends Controller {
 			} else {
 				$image = '';
 			}
+
+			$total_quantity += $product['quantity'];
 
 			$option_data = array();
 
@@ -123,18 +127,37 @@ class ControllerCommonCart extends Controller {
 
 		$data['totals'] = array();
 
+		$total_price = 0;
+
 		foreach ($totals as $total) {
+
+			$total_price += $total['value'];
+
 			$data['totals'][] = array(
 				'title' => $total['title'],
 				'text'  => $this->currency->format($total['value'], $this->session->data['currency']),
 			);
 		}
 
+		$data['total_quantity'] = $total_quantity;
+
+		$data['total_price'] = $this->currency->format( $total_price, $this->session->data['currency'] );
+
+		$data['total_quantity_text'] = $this->plural_form( $total_quantity, array( 'товар', 'товара', 'товаров' ) );
+
+
 		$data['cart'] = $this->url->link('checkout/cart');
 		$data['checkout'] = $this->url->link('checkout/checkout', '', true);
 
 		return $this->load->view('common/cart', $data);
 	}
+
+	private function plural_form($number, $after)
+	{
+  		$cases = array (2, 0, 1, 1, 1, 2);
+  		return $number." ".$after[ ($number%100>4 && $number%100<20)? 2: $cases[min($number%10, 5)] ];
+	}
+
 
 	public function info() {
 		$this->response->setOutput($this->index());

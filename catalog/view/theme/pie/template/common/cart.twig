@@ -1,0 +1,9 @@
+<div style="display:block-inline;"><a class="header_cart{% if total_quantity %} active{% endif %}" href="{{ cart }}">
+                            <p>{{ total_quantity_text }}</p>
+                            {% if total_quantity %}
+                            <b>{{ total_price }}</b>
+                            {% else %}
+                            <b>Корзина</b>
+                            {% endif %}
+                        </a>
+</div>
