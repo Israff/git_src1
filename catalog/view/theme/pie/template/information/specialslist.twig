@@ -1,0 +1,26 @@
+{{ header }}
+
+        <main>
+            <section class="content_section card_section">
+                <div class="container">
+                    <h1>{{ sub_title }}</h1>
+                    {% if specials %}
+                    <div class="card_list">
+                        {% for special in specials %}
+                        <div class="card">
+                            <a href="{{ special.href }}" class="img_container">
+                                <img src="{{ special.thumb }}" alt="{{ special.title }}">
+                            </a>
+                            <div class="card_content">
+                                <h2 class="card_title"><a href="{{ special.href }}">{{ special.title }}</a></h2>
+                                <a href="{{ special.href }}">{{ special.description }}</a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+            </section>
+        </main>
+
+{{ footer }}
