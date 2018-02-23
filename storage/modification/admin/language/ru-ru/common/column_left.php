@@ -96,3 +96,6 @@ $_['text_other_status']         = 'Остальные заказы';
 
 $_['text_article']         = 'Статьи';
 $_['text_vacancies']         = 'Вакансии';
+$_['text_specials']         = 'Акции';
+
+
