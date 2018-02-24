@@ -18,6 +18,9 @@ class ControllerCheckoutCart extends Controller {
 		);
 
 		if ($this->cart->hasProducts() || !empty($this->session->data['vouchers'])) {
+
+			$data['title'] = $this->language->get("heading_title");
+
 			if (!$this->cart->hasStock() && (!$this->config->get('config_stock_checkout') || $this->config->get('config_stock_warning'))) {
 				$data['error_warning'] = $this->language->get('error_stock');
 			} elseif (isset($this->session->data['error'])) {
@@ -134,6 +137,7 @@ class ControllerCheckoutCart extends Controller {
 					'cart_id'   => $product['cart_id'],
 					'thumb'     => $image,
 					'name'      => $product['name'],
+					'calorific'	=> html_entity_decode( $product['calorific'], ENT_QUOTES, "UTF-8" ),
 					'model'     => $product['model'],
 					'option'    => $option_data,
 					'recurring' => $recurring,
@@ -207,6 +211,10 @@ class ControllerCheckoutCart extends Controller {
 			$data['totals'] = array();
 
 			foreach ($totals as $total) {
+
+				if( $total['code'] == 'total')
+					$data['total_price_text'] = $this->currency->format( $total['value'], $this->session->data['currency']);
+
 				$data['totals'][] = array(
 					'title' => $total['title'],
 					'text'  => $this->currency->format($total['value'], $this->session->data['currency'])
@@ -237,7 +245,7 @@ class ControllerCheckoutCart extends Controller {
 			$data['column_right'] = $this->load->controller('common/column_right');
 			$data['content_top'] = $this->load->controller('common/content_top');
 			$data['content_bottom'] = $this->load->controller('common/content_bottom');
-			$data['footer'] = $this->load->controller('common/footer');
+			$data['footer'] = $this->load->controller('common/footer_cart');
 			$data['header'] = $this->load->controller('common/header');
 
 			$this->response->setOutput($this->load->view('checkout/cart', $data));
@@ -399,7 +407,9 @@ class ControllerCheckoutCart extends Controller {
 			unset($this->session->data['payment_methods']);
 			unset($this->session->data['reward']);
 
-			$this->response->redirect($this->url->link('checkout/cart'));
+			$json['success'] = 1;
+
+//			$this->response->redirect($this->url->link('checkout/cart'));
 		}
 
 		$this->response->addHeader('Content-Type: application/json');
@@ -474,5 +484,68 @@ class ControllerCheckoutCart extends Controller {
 
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
+	}
+
+	public function info()
+	{
+		$cart_id = intval( $this->request->post['cart_id'] );
+
+		$products = $this->cart->getProducts();
+
+		$ret = array();
+
+		foreach( $products as $product )
+		{
+			if( $product['cart_id'] == $cart_id )
+			{
+				$ret['price'] = $this->currency->format( $product['price'] * $product['quantity'], $this->session->data['currency'] );
+			}
+		}
+
+		$this->load->model('setting/extension');
+
+		$totals = array();
+		$taxes = $this->cart->getTaxes();
+		$total = 0;
+
+		$total_data = array(
+			'totals' => &$totals,
+			'taxes'  => &$taxes,
+			'total'  => &$total
+		);
+
+		$results = $this->model_setting_extension->getExtensions('total');
+
+		foreach ($results as $result) {
+			if ($this->config->get('total_' . $result['code'] . '_status')) {
+				$this->load->model('extension/total/' . $result['code']);
+				$this->{'model_extension_total_' . $result['code']}->getTotal($total_data);
+			}
+		}
+
+		foreach( $totals as $tot )
+		{
+			if( $tot['code'] == 'sub_total' )
+			{
+				$totval = $tot['value'];
+				$ret['total'] = $this->currency->format( $tot['value'], $this->session->data['currency'] );
+			}
+		}
+
+		$address = array( 'country_id' => 0, 'zone_id' => 0 );
+
+		$this->load->model('extension/shipping/flat');
+
+		$ship = $this->model_extension_shipping_flat->getQuote( $address );
+		
+		$ship = current( $ship['quote'] );
+
+		if( isset( $ret['total'] ) )
+		{
+			$ret['totalship'] = $this->currency->format( $totval + floatval( $ship['cost'] ) , $this->session->data['currency'] );
+		}
+
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput( json_encode( $ret ) );
 	}
 }

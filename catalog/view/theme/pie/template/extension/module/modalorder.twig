@@ -1,0 +1,65 @@
+        <div class="modal_order">
+            <form class="popup_form" action="#" method="post" novalidate>
+                <fieldset class="contacts">
+                    <legend>Контактные данные</legend>
+                    <input type="text" name="name" value="" placeholder="Имя *" required>
+                    <input type="tel" name="tel" value="" placeholder="Телефон *" required>
+                    <input type="text" name="bonus" value="" placeholder="Номер бонусной карты">
+                </fieldset>
+                <fieldset class="delivery line">
+                    <div class="double_input line">
+                        <input type="radio" id="delivery-1" name="delivery" data-shipping="{{ shipping }}" data-total-shipping="{{ totalshipping }}" value="flat" checked>
+                        <label for="delivery-1">Доставка</label>
+                        <input type="radio" id="delivery-2" name="delivery" data-shipping="0" data-total-shipping="{{ total }}" value="pickup">
+                        <label for="delivery-2">Самовывоз</label>
+                    </div>
+                    <div class="delivery-ways">
+                        <fieldset>
+                            <legend>Адрес</legend>
+                            <input type="text" name="street" value="" placeholder="Улица">
+                            <div class="double_input">
+                                <input type="text" name="house" value="" placeholder="Дом">
+                                <input type="text" name="appartment" value="" placeholder="Квартира/офис">
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <legend>Выберите магазин</legend>
+                            {% for shop in shops %}
+                            <input type="radio" id="shop-{{ shop.index }}" name="shop" value="{{ shop.shop }}"{% if ( shop.index == 1 ) %} checked {% endif %}>
+                            <label for="shop-{{ shop.index }}">{{ shop.shop }}</label>
+                            {% endfor %}
+                        </fieldset>
+                    </div>
+                </fieldset>
+                <fieldset class="line">
+                    <legend>Дата и время доставки</legend>
+                    <div class="double_input">
+                        <input type="text" name="date" value="" placeholder="Дата">
+                        <select name="time">
+                            <option value="" selected disabled hidden>Время</option>
+                            {% for time in times %}
+                            <option value="{{ time.time }}">{{ time.time }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </fieldset>
+                <fieldset class="line">
+                    <legend>Комментарий к заказу</legend>
+                    <textarea name="comment" placeholder="Введите комментарий к заказу"></textarea>
+                </fieldset>
+                <fieldset class="order_total line">
+                    <p>Сумма заказа: <span class="price">{{ total }}</span></p>
+                    <p>Доставка: <span class="price">{{ shipping }}</span></p>
+                    <p class="order_total_sum">К оплате: <span class="price">{{ totalshipping }}</span></p>
+                </fieldset>
+                <fieldset class="submit_container">
+                    <button class="btn" type="submit">Подтвердить заказ</button>
+                    <input type="checkbox" name="personal_data" id="personal_data" checked required>
+                        <label for="personal_data">Согласие на обработку персональных данных</label>
+                    <p class="tip">Заполните выделенные поля</p>
+                </fieldset>
+            </form>
+            <div class="cross">
+                <a href="#" class="close"></a>
+            </div>
+        </div>

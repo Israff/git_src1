@@ -2003,3 +2003,13 @@ a.header_cart > b::after
 {
     content: ' ₽';
 }
+
+section.basket_section span.price::after
+{
+    content: ' ₽';
+}
+
+fieldset.order_total span.price::after
+{
+    content: ' ₽';
+}

@@ -1,0 +1,112 @@
+        <footer>
+            <div class="footer_top">
+                <div class="container">
+                    <div class="footer_top_layout">
+                        <div class="footer_logo">
+                            <a href="index.html">
+                                <img src="catalog/view/theme/pie/image/footer_logo.png" alt="Белкины пироги">
+                            </a>
+                        </div>
+                        <div class="footer_links">
+                            <ul>
+                                <li>
+                                    <a href="#">Сытные пироги</a>
+                                </li>
+                                <li>
+                                    <a href="#">Сладкие пироги</a>
+                                </li>
+                                <li>
+                                    <a href="#">Выпечка</a>
+                                </li>
+                                <li>
+                                    <a href="#">Десерты</a>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    <a href="#">Наборы</a>
+                                </li>
+                                <li>
+                                    <a href="#">О пекарне</a>
+                                </li>
+                                <li>
+                                    <a href="#">Франшизы</a>
+                                </li>
+                                <li>
+                                    <a href="#">Акции</a>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    <a href="#">Доставка и оплата</a>
+                                </li>
+                                <li>
+                                    <a href="#">Вакансии</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="footer_info">
+                            <p class="footer_contacts">
+                                <a class="phone" href="tel:8(800)5551450">8 (800) 555 14 50</a>
+                                <a class="email" href="mailto:mail@belkinipirogi.ru">mail@belkinipirogi.ru</a>
+                            </p>
+                            <ul class="social">
+                                <li>
+                                    <a href="#">
+                                        <img src="catalog/view/theme/pie/image/social_vk.png" alt="vk">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="catalog/view/theme/pie/image/social_fb.png" alt="Facebook">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="catalog/view/theme/pie/image/social_inst.png" alt="Instagram">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="catalog/view/theme/pie/image/social_ok.png" alt="ok.ru">
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer_bottom">
+                <div class="container">
+                    <p class="copyright">
+                        ООО "Беликины пироги" ИНН ОГРН Политика конфиденциальности
+                    </p>
+                </div>
+            </div>
+        </footer>
+    <div class="modal_content">
+        <div class="overlay"></div>
+        {{ modalorder }}
+        <div class="modal_order_success">
+            <p class="modal_order_success_text">
+                Спасибо!<br>
+                Мы свяжемся с Вами в ближайшее время!
+            </p>
+            <p>
+                График работы: с 10:00 до 20:00
+            </p>
+            <div class="cross">
+                <a href="#" class="close"></a>
+            </div>
+        </div>
+    </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="catalog/view/libs/owl.carousel/owl.carousel.min.js"></script>
+        <script src="catalog/view/libs/nice-select/jquery.nice-select.min.js"></script>
+        <script src="catalog/view/js/script.js"></script>
+{% for script in scripts %}
+<script src="{{ script }}" type="text/javascript"></script>
+{% endfor %}
+    </body>
+</html>

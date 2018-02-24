@@ -131,7 +131,8 @@ class ControllerCommonCart extends Controller {
 
 		foreach ($totals as $total) {
 
-			$total_price += $total['value'];
+			if( $total['code'] == 'sub_total' )
+				$total_price += $total['value'];
 
 			$data['totals'][] = array(
 				'title' => $total['title'],

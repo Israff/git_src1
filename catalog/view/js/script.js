@@ -200,4 +200,118 @@ $(function() {
         return false;
     });
 
+    $(document).on( "input change", "div.product_basket div.counter > input[type='text']", function( evt )
+    {
+        var count = parseInt( $(this).val() );
+        var post = {};
+        var cart_id;
+
+        if( count > 0 )
+        {
+            post['quantity'] = {};
+
+            cart_id = parseInt( $(this).attr("data-cart-id") );
+
+            post['quantity'][ $(this).attr("data-cart-id") ] = count;
+
+            $.post( "index.php?route=checkout/cart/edit", post, function( obj )
+            {
+                if( obj.success !== undefined )
+                {
+                    $("a.header_cart").parent().load("index.php?route=common/cart/info");
+
+                    delete post['quantity'];
+
+                    post['cart_id'] = cart_id;
+
+                    $.post( "index.php?route=checkout/cart/info", post, function( obj )
+                    {
+                        if( obj.price !== undefined && obj.total !== undefined )
+                        {
+                            $("div.value > p > span.price[data-cart-id='" + cart_id + "']").html( obj.price );
+                            $("div.total > p > span.price").html( obj.total );
+                        }
+                    });
+                }
+            } );
+        }
+    });
+
+    $("div.product_basket div.cross a").click( function( evt )
+    {
+        var cart_id;
+        var post = {};
+
+        evt.preventDefault();
+        evt.stopPropagation();
+
+        cart_id = parseInt( $(this).attr("data-cart-id") );
+
+        post['key'] = cart_id;
+
+        $.post( "index.php?route=checkout/cart/remove", post, function( obj )
+        {
+            if( obj.success !== undefined )
+            {
+                window.location.reload();
+            }
+        } );
+
+        return false;
+    });
+
+    $("fieldset.delivery input[type='radio'][name='delivery']").change( function( evt )
+    {
+        var shipping = $(this).attr("data-shipping"), totalshipping = $(this).attr("data-total-shipping");
+
+        $("fieldset.order_total > p").eq(1).find("span.price").html( shipping );
+        $("fieldset.order_total > p").eq(2).find("span.price").html( totalshipping );
+    });
+
+    $("div.modal_order form.popup_form").submit( function(event)
+    {
+        var post = {};
+        var form = $(this);
+
+        if( !form.find('input.invalid').length )
+        {
+            post['name'] = form.find("input[name='name']").val();
+
+            post['phone'] = form.find("input[name='tel']").val();
+
+            post['bonus'] = form.find("input[name='bonus']").val();
+
+            post['delivery'] = form.find("input[name='delivery']:checked").val();
+
+            if( post['delivery'] == 'flat' )
+            {
+                post['street'] = form.find("input[name='street']").val();
+                post['house'] = form.find("input[name='house']").val();
+                post['appartment'] = form.find("input[name='appartment']").val();
+
+            }else if( post['delivery'] == 'pickup' ){
+                post['shop'] = form.find("input[name='shop']:checked").val();
+            }
+
+            post['date'] = form.find("input[name='date']").val();
+            post['time'] = form.find("select[name='time']").val();
+
+            post['comment'] = form.find("textarea[name='comment']").val();
+
+            $.post( "index.php?route=checkout/m0r1", post, function( obj)
+            {
+                if( obj.success !== undefined )
+                {
+                    $.post( "index.php?route=checkout/confirm", {}, function(){} );
+                    $.post( "index.php?route=extension/payment/cod/confirm", {}, function( obj ){
+                        
+                        if( obj.redirect !== undefined )
+                        {
+                            window.location = obj.redirect;
+                        }
+                    } );
+                }
+            });
+        }
+    });
 });

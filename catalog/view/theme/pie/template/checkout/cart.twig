@@ -1,0 +1,252 @@
+{{ header }}
+
+    <main>
+        <section class="content_section basket_section">
+            <div class="container">
+                <h1>{{ title }}</h1>
+                <form class="basket_form">
+                    <div class="basket_in">
+                        <div class="basket_items">
+                        	{% for product in products %}
+                            <div class="product_basket">
+                                <div class="product_basket_top">
+                                    <div class="product_img">
+                                        <img src="{{ product.thumb }}" alt="Пирог с мясом">
+                                    </div>
+                                    <div class="product_info">
+                                        <div class="product_info_top">
+                                            <h3>{{ product.name }}</h3>
+                                            {% if product.calorific %}
+                                            <span class="product_popup_icon"></span>
+                                            <div class="product_popup">
+                                                <div class="product_popup_content">
+                                                    {{ product.calorific }}
+                                                </div>
+                                            </div>
+                                            {% endif %}
+                                        </div>
+                                        <div class="product_description">
+                                            <p>Стандарт</p>
+                                            <p>Вес: 1 кг.</p>
+                                            <p>Размер: 30 см.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product_basket_bottom">
+                                    <div class="counter">
+                                        <span class="minus"></span>
+                                        <input type="text" data-cart-id="{{ product.cart_id }}" value="{{ product.quantity }}" size="1">
+                                        <span class="plus"></span>
+                                    </div>
+                                    <div class="value">
+                                        <p>Стоимость: <span data-cart-id="{{ product.cart_id }}" class="price">{{ product.total }}</span></p>
+                                    </div>
+                                </div>
+                                <div class="cross">
+                                    <a href="#" data-cart-id="{{ product.cart_id }}"></a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        </div>
+                        <div class="total">
+                            <p>Итого: <span class="price">{{ total_price_text }}</span></p>
+                            <button type="submit" class="btn">Оформить заказ</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+        <section class="content_section basket_section basket_catalog_section">
+            <div class="container">
+                <h2>Добавьте к заказу</h2>
+                <div class="product_list">
+                    <div class="product">
+                        <a class="product_img" href="#">
+                                <img src="img/product.png" alt="Пирог с мясом">
+                            </a>
+                        <section class="product_info">
+                            <div class="product_info_top">
+                                <h3>
+                                        <a href="#">Пирог с мясом</a>
+                                    </h3>
+                                <span class="product_popup_icon"></span>
+                                <div class="product_popup">
+                                    <div class="product_popup_content">
+                                        <b>Пищевая ценность продукта на 100 г:</b>
+                                        <ul>
+                                            <li>Эн. ценность 199,6 ккал</li>
+                                            <li>Углеводы 24,4 г</li>
+                                            <li>Белки 8,8 г</li>
+                                            <li>Жиры 7,4 г</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product_description">
+                                <p>Краткое описание пирога или его состав тут. Краткое описание пирога или его ...</p>
+                            </div>
+                        </section>
+                        <form class="product_form">
+                            <fieldset>
+                                <input type="radio" name="weight" id="weight-8-1" checked>
+                                <label for="weight-8-1">Стандартный -
+                                        <b>1.2 кг</b>
+                                    </label>
+                                <input type="radio" name="weight" id="weight-8-2">
+                                <label for="weight-8-2">Двойной -
+                                        <b>2.4 кг</b>
+                                    </label>
+                            </fieldset>
+                            <div class="product_form_bottom">
+                                <div class="price_container">
+                                    <span class="price">781</span>
+                                </div>
+                                <button class="btn" type="submit">В корзину</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="product">
+                        <a class="product_img" href="#">
+                                <img src="img/product.png" alt="Пирог с мясом">
+                            </a>
+                        <section class="product_info">
+                            <div class="product_info_top">
+                                <h3>
+                                        <a href="#">Пирог с мясом</a>
+                                    </h3>
+                                <span class="product_popup_icon"></span>
+                                <div class="product_popup">
+                                    <div class="product_popup_content">
+                                        <b>Пищевая ценность продукта на 100 г:</b>
+                                        <ul>
+                                            <li>Эн. ценность 199,6 ккал</li>
+                                            <li>Углеводы 24,4 г</li>
+                                            <li>Белки 8,8 г</li>
+                                            <li>Жиры 7,4 г</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product_description">
+                                <p>Краткое описание пирога или его состав тут. Краткое описание пирога или его ...</p>
+                            </div>
+                        </section>
+                        <form class="product_form">
+                            <fieldset>
+                                <input type="radio" name="weight" id="weight-4-1" checked>
+                                <label for="weight-4-1">Стандартный -
+                                        <b>1.2 кг</b>
+                                    </label>
+                                <input type="radio" name="weight" id="weight-4-2">
+                                <label for="weight-4-2">Двойной -
+                                        <b>2.4 кг</b>
+                                    </label>
+                            </fieldset>
+                            <div class="product_form_bottom">
+                                <div class="price_container">
+                                    <span class="price">781</span>
+                                </div>
+                                <button class="btn" type="submit">В корзину</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="product">
+                        <a class="product_img" href="#">
+                                <img src="img/product.png" alt="Пирог с мясом">
+                            </a>
+                        <div class="product_sticker">
+                            <img src="img/sticker_stock.png" alt="">
+                        </div>
+                        <section class="product_info">
+                            <div class="product_info_top">
+                                <h3>
+                                        <a href="#">Пирог с мясом</a>
+                                    </h3>
+                                <span class="product_popup_icon"></span>
+                                <div class="product_popup">
+                                    <div class="product_popup_content">
+                                        <b>Пищевая ценность продукта на 100 г:</b>
+                                        <ul>
+                                            <li>Эн. ценность 199,6 ккал</li>
+                                            <li>Углеводы 24,4 г</li>
+                                            <li>Белки 8,8 г</li>
+                                            <li>Жиры 7,4 г</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product_description">
+                                <p>Краткое описание пирога или его состав тут. Краткое описание пирога или его ...</p>
+                            </div>
+                        </section>
+                        <form class="product_form">
+                            <fieldset>
+                                <input type="radio" name="weight" id="weight-3-1" checked>
+                                <label for="weight-3-1">Стандартный -
+                                        <b>1.2 кг</b>
+                                    </label>
+                                <input type="radio" name="weight" id="weight-3-2">
+                                <label for="weight-3-2">Двойной -
+                                        <b>2.4 кг</b>
+                                    </label>
+                            </fieldset>
+                            <div class="product_form_bottom">
+                                <div class="price_container">
+                                    <span class="price">781</span>
+                                    <span class="price_discount">1 000</span>
+                                </div>
+                                <button class="btn" type="submit">В корзину</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="product">
+                        <a class="product_img" href="#">
+                                <img src="img/product.png" alt="Пирог с мясом">
+                            </a>
+                        <section class="product_info">
+                            <div class="product_info_top">
+                                <h3>
+                                        <a href="#">Пирог с мясом</a>
+                                    </h3>
+                                <span class="product_popup_icon"></span>
+                                <div class="product_popup">
+                                    <div class="product_popup_content">
+                                        <b>Пищевая ценность продукта на 100 г:</b>
+                                        <ul>
+                                            <li>Эн. ценность 199,6 ккал</li>
+                                            <li>Углеводы 24,4 г</li>
+                                            <li>Белки 8,8 г</li>
+                                            <li>Жиры 7,4 г</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product_description">
+                                <p>Краткое описание пирога или его состав тут. Краткое описание пирога или его ...</p>
+                            </div>
+                        </section>
+                        <form class="product_form">
+                            <fieldset>
+                                <input type="radio" name="weight" id="weight-1-1" checked>
+                                <label for="weight-1-1">Стандартный -
+                                        <b>1.2 кг</b>
+                                    </label>
+                                <input type="radio" name="weight" id="weight-1-2">
+                                <label for="weight-1-2">Двойной -
+                                        <b>2.4 кг</b>
+                                    </label>
+                            </fieldset>
+                            <div class="product_form_bottom">
+                                <div class="price_container">
+                                    <span class="price">781</span>
+                                </div>
+                                <button class="btn" type="submit">В корзину</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+{{footer}}
