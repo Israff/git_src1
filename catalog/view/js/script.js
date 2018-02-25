@@ -169,7 +169,7 @@ $(function() {
         }
     });
 
-    $("form.product_form   button[type='submit']").click( function( evt )
+    $("section.catalog_section form.product_form button[type='submit']").click( function( evt )
     {
         var post = {};
         var option;
@@ -194,6 +194,37 @@ $(function() {
             if( obj.success !== undefined )
             {
                 $("a.header_cart").parent().load("index.php?route=common/cart/info");
+            }
+        },'json');
+
+        return false;
+    });
+
+    $("section.basket_catalog_section form.product_form button[type='submit']").click( function( evt )
+    {
+        var post = {};
+        var option;
+
+        evt.preventDefault();
+        evt.stopPropagation();
+
+        post['product_id'] = parseInt( $(this).attr("data-pid") );
+        post['quantity'] = 1;
+
+        option = $(this).parent().prev().find("input[type='radio']:checked");
+
+        if( option.length > 0 )
+        {
+            post['option'] = {};
+
+            post['option'][ option.attr("data-option-id") ] = parseInt( option.attr( "data-option-value-id" ) );
+        }
+
+        $.post( "/index.php?route=checkout/cart/add", post, function( obj )
+        {
+            if( obj.success !== undefined )
+            {
+                window.location.reload();
             }
         },'json');
 
@@ -314,4 +345,30 @@ $(function() {
             });
         }
     });
+
+    $("div.modal_vacancies form.popup_form").submit( function(event)
+    {
+        var post = {};
+        var form = $(this);
+
+        if( !form.find('input.invalid').length )
+        {
+            post['vacancy_id'] = parseInt( $("section.vacancies_section").attr("data-vacancy-id") );
+
+            post['name'] = form.find("input[name='name']").val();
+
+            post['phone'] = form.find("input[name='tel']").val();
+
+            post['email'] = form.find("input[name='mail']").val();
+
+            post['comment'] = form.find("textarea[name='comment']").val();
+
+            $.post( "index.php?route=information/vacancies/ajax", post, function( obj )
+            {
+                //
+            } );
+
+        }
+
+    } );
 });

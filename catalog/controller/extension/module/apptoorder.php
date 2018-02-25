@@ -1,31 +1,51 @@
 <?php
-class ControllerExtensionModuleMainCatalog extends Controller {
+class ControllerExtensionModuleAppToOrder extends Controller {
 	public function index($setting) {
 		static $module = 0;
 
+		$data['title']	= $setting['name'];
+
+		$count = intval( $setting['count'] );
+
 		$this->load->model('tool/image');
-		$this->load->model('catalog/category');
 		$this->load->model('catalog/product');
 
-		$category_id = intval( $setting['category_id'] );
-
-		$category = $this->model_catalog_category->getCategory( $category_id );
-
-		$data['category_name'] = $category['name'];
-		$data['category_id'] = $category_id;
-		
 		$data['products'] = array();
-
-		$filter_data = array(
-			'filter_category_id'	=> $category_id
-		);
 
 		$this->load->library('cart/carthelper');
 
-		$results = $this->model_catalog_product->getProducts( $filter_data );
+		$results = $this->cart->getProducts();
+
+		$products = array();
+		$related = array();
 
 		foreach( $results as $result )
 		{
+			$products[ $result['product_id'] ] = 1;
+		}
+
+		$products = array_keys( $products );
+
+		foreach( $products as $product_id )
+		{
+			$tmp = $this->model_catalog_product->getProductRelated( $product_id );
+			
+			$related = array_merge( $related, array_keys( $tmp ) );
+		}
+
+		$related = array_unique( $related );
+
+		$related = array_diff( $related, $products );
+
+		if( count( $related ) == 0 )
+			return '';
+
+		shuffle( $related );
+		
+		foreach( $related as $product_id )
+		{
+			$result = $this->model_catalog_product->getProduct( $product_id );
+
 			$options = $this->model_catalog_product->getProductOptions( $result['product_id'] );
 
 			$sticker = false;
@@ -145,6 +165,6 @@ class ControllerExtensionModuleMainCatalog extends Controller {
 
 		$data['module'] = $module++;
 
-		return $this->load->view( 'extension/module/main_catalog', $data );
+		return $this->load->view( 'extension/module/apptoorder', $data );
 	}
 }

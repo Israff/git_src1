@@ -241,6 +241,15 @@ class ControllerCheckoutCart extends Controller {
 				}
 			}
 
+			$this->load->model('setting/module');
+
+			$setting_info = $this->model_setting_module->getModule( 42 );
+
+			if( $setting_info && $setting_info['status'] )
+			{
+				$data['apptoorder'] = $this->load->controller( 'extension/module/apptoorder', $setting_info );
+			}
+
 			$data['column_left'] = $this->load->controller('common/column_left');
 			$data['column_right'] = $this->load->controller('common/column_right');
 			$data['content_top'] = $this->load->controller('common/content_top');
