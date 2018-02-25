@@ -41,9 +41,16 @@ class ControllerExtensionModuleAppToOrder extends Controller {
 			return '';
 
 		shuffle( $related );
+
+		$i = 0;
 		
 		foreach( $related as $product_id )
 		{
+			$i++;
+
+			if( $i >= $count )
+				break;
+			
 			$result = $this->model_catalog_product->getProduct( $product_id );
 
 			$options = $this->model_catalog_product->getProductOptions( $result['product_id'] );
