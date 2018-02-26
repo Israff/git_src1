@@ -10,6 +10,14 @@ $(function() {
         autoplayHoverPause: true
     });
 
+    $('.products_nav a[href^="#"]').each( function()
+    {
+        if( $( "section" + $(this).attr("href") ).length == 0 )
+        {
+            $(this).attr( "href", "index.php" + $(this).attr("href") );
+        }
+    });
+
     $('.products_nav a[href^="#"]').click(function(event) {
         event.preventDefault();
 

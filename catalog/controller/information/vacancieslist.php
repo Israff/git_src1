@@ -48,7 +48,7 @@ class ControllerInformationVacanciesList extends Controller {
 
 			$data['vacancies'][] = array(
 				'vacancy_id'  => $result['information_id'],
-				'date_added'	=> sprintf( "%02.%02.%04d", $date['day'], $date['month'], $date['year'] ),
+				'date_added'	=> sprintf( "%02d.%02d.%04d", $date['day'], $date['month'], $date['year'] ),
 				'thumb'       => $image,
 				'title'        => $result['title'],
 				'description' => utf8_substr( trim( strip_tags( html_entity_decode( $result['description'], ENT_QUOTES, 'UTF-8' ) ) ), 0, 220 ) . '..',
