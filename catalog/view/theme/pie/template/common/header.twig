@@ -22,6 +22,9 @@
         <link rel="stylesheet" href="catalog/view/theme/pie/stylesheet/normalize.css">
         <link rel="stylesheet" href="catalog/view/theme/pie/stylesheet/main.css">
         <link rel="stylesheet" href="catalog/view/theme/pie/stylesheet/media.css">
+        {% for style in styles %}
+        <link href="{{ style.href }}" rel="{{ style.rel }}" />
+        {% endfor %}
 
         {% for link in links %}
         <link href="{{ link.href }}" rel="{{ link.rel }}" />

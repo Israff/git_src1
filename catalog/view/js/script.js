@@ -105,6 +105,15 @@ $(function() {
         $('.overlay').fadeIn();
     });
 
+    $('a.accept-privacy').click(function(event) {
+        event.preventDefault();
+        $('.modal_privacy').fadeIn();
+        $('html, body').animate({
+            scrollTop: $('.modal_privacy').offset().top
+        }, 500);
+        $('.overlay').fadeIn();
+    });
+
     $('.vacancies_respond_btn').click(function(event) {
         event.preventDefault();
         $('.modal_vacancies').fadeIn();

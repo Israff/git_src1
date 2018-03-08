@@ -19,6 +19,13 @@ class ControllerCheckoutCart extends Controller {
 
 		if ($this->cart->hasProducts() || !empty($this->session->data['vouchers'])) {
 
+			$this->document->addScript('//cdnjs.cloudflare.com/ajax/libs/jquery-ajaxtransport-xdomainrequest/1.0.1/jquery.xdomainrequest.min.js', 'footer' );
+			$this->document->addScript('//cdn.jsdelivr.net/npm/suggestions-jquery@17.12.0/dist/js/jquery.suggestions.min.js', 'footer' );
+			
+			$this->document->addScript('catalog/view/js/m0r1.data.js', 'footer' );
+
+			$this->document->addStyle('//cdn.jsdelivr.net/npm/suggestions-jquery@17.12.0/dist/css/suggestions.min.css');
+
 			$data['title'] = $this->language->get("heading_title");
 
 			if (!$this->cart->hasStock() && (!$this->config->get('config_stock_checkout') || $this->config->get('config_stock_warning'))) {

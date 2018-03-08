@@ -31,6 +31,14 @@ class ControllerCommonFooter extends Controller {
 
 		$data['powered'] = sprintf($this->language->get('text_powered'), $this->config->get('config_name'), date('Y', time()));
 
+		$setting_info = $this->model_setting_module->getModule( 48 );
+
+		if( $setting_info && $setting_info['status'] )
+		{
+			$data['privacy_content'] = $this->load->controller( 'extension/module/html', $setting_info );
+		}
+
+
 		// Whos Online
 		if ($this->config->get('config_customer_online')) {
 			$this->load->model('tool/online');

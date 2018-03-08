@@ -78,15 +78,28 @@
             </div>
             <div class="footer_bottom">
                 <div class="container">
+                    <div style="float:right;">
+                        <a class="accept-privacy" href="#">Согласие на обработку персональных данных</a>
+                    </div>
+                    <div>
                     <p class="copyright">
                         ООО "Беликины пироги" ИНН ОГРН Политика конфиденциальности
                     </p>
+                    </div>
                 </div>
             </div>
         </footer>
         
         <div class="modal_content">
             <div class="overlay"></div>
+            <div class="modal_privacy" style="width:auto;">
+                <div>
+                    {{privacy_content}}
+                </div>
+                <div class="cross">
+                    <a href="#" class="close"></a>
+                </div>
+            </div>
             <div class="modal_vacancies">
                 <form class="popup_form" action="#" method="post" novalidate>
                     <fieldset class="contacts line">
