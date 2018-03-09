@@ -1,0 +1,14 @@
+div.bootstrap-datetimepicker-widget
+{
+	background-color: #A3F2FF;
+}
+
+div.bootstrap-datetimepicker-widget ul.list-unstyled li.picker-switch
+{
+	display: none;
+}
+
+div.bootstrap-datetimepicker-widget ul.list-unstyled li:nth-child(3)
+{
+	display: none;
+}

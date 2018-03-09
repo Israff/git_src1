@@ -23,8 +23,15 @@ class ControllerCheckoutCart extends Controller {
 			$this->document->addScript('//cdn.jsdelivr.net/npm/suggestions-jquery@17.12.0/dist/js/jquery.suggestions.min.js', 'footer' );
 			
 			$this->document->addScript('catalog/view/js/m0r1.data.js', 'footer' );
+			$this->document->addScript('catalog/view/javascript/jquery/datetimepicker/moment/moment-with-locales.min.js', 'footer' );
+			$this->document->addScript('catalog/view/javascript/jquery/datetimepicker/bootstrap-datetimepicker.min.js', 'footer' );
 
 			$this->document->addStyle('//cdn.jsdelivr.net/npm/suggestions-jquery@17.12.0/dist/css/suggestions.min.css');
+
+			$this->document->addStyle('catalog/view/javascript/jquery/datetimepicker/bootstrap-datetimepicker.min.css');
+			$this->document->addStyle('catalog/view/theme/pie/stylesheet/m0r1.datetimepicker.css');
+
+			$this->document->addScript('catalog/view/js/m0r1.cart.datepicker.js', 'footer' );
 
 			$data['title'] = $this->language->get("heading_title");
 
