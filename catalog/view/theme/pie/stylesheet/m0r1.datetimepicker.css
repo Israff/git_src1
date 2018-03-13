@@ -1,6 +1,7 @@
 div.bootstrap-datetimepicker-widget
 {
 	background-color: #A3F2FF;
+	display: none;
 }
 
 div.bootstrap-datetimepicker-widget ul.list-unstyled li.picker-switch

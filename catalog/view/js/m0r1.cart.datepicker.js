@@ -5,7 +5,8 @@ $(document).ready(
 			'format'			: 'DD.MM.YYYY',
 			'locale'			: 'ru',
 			'language'			: 'ru',
-			'allowInputToggle'	: true
+			'allowInputToggle'	: true,
+			'inline'			: false
 		});
 	}
 );
